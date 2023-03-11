@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="card">
+        <div class="logo-container">
+            <h1>ZNQ</h1>
+        </div>
+        <div class="form-container">
+            <div class="form">
+
+                <span class="p-input-icon-left">
+                    <i class="pi pi-user"></i>
+                    <input type="text" pInputText [(ngModel)]="username" placeholder="Usuario">
+                </span>
+
+                <span class="p-input-icon-left">
+                    <i class="pi pi-verified"></i>
+                    <input type="password" pInputText [(ngModel)]="password" placeholder="Contraseña">
+                </span>
+
+
+                <div class="buttons">
+                    <button pButton type="button" label="Registrarse" class="p-button-outlined"></button>
+                    <p-button label="Ingresar" routerLink="/dashboard"></p-button>
+                </div>
+                <p-button label="Registrarse" routerLink="/signup"></p-button>
+                <p-button label="¿Olvidaste tu contraseña?" routerLink="/login/restore_password"></p-button>
+                
+            </div>
+        </div>
+    </div>
+</div>
