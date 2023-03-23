@@ -4,11 +4,17 @@
  -->
 <p-menubar [model]="items" [autoDisplay]="true">
     <ng-template pTemplate="start">
-        <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" height="40" class="mr-2">
+        <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" height="40"
+            style="margin-right: 20px; margin-left: 10px;">
     </ng-template>
 
     <ng-template pTemplate="end">
-        <input type="text" pInputText placeholder="Search">
+        <span class="p-buttonset">
+            <p-button label="Invitaciones" badge="5"></p-button>
+            <p-button label="Peticiones" icon="pi pi-users" styleClass="p-button-warning" badge="8"
+                badgeClass="p-badge-danger"></p-button>
+            <p-button label="Salir" icon="pi pi-sign-out" styleClass="p-button-danger"></p-button>
+        </span>
     </ng-template>
 </p-menubar>
 <router-outlet></router-outlet>

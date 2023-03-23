@@ -5,6 +5,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { MainComponent } from './main/main.component';
 
 import {MenubarModule} from 'primeng/menubar';
+import { ButtonModule } from 'primeng/button';
 
 
 
@@ -15,7 +16,8 @@ import {MenubarModule} from 'primeng/menubar';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    MenubarModule
+    MenubarModule,
+    ButtonModule
   ]
 })
 export class DashboardModule { }

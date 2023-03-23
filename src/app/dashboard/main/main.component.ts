@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -9,28 +10,31 @@ import { MenuItem } from 'primeng/api';
 export class MainComponent {
   items: MenuItem[] = [
     {
-      label: 'File',
+      label: 'Equipos',
+      icon: 'pi pi-fw pi-id-card',
       items: [{
-        label: 'New',
+        label: 'Crear',
         icon: 'pi pi-fw pi-plus',
-        items: [
-          { label: 'Project' },
-          { label: 'Other' },
-        ]
+        command: () => { this.router.navigateByUrl('dashboard/team/create') }
       },
-      { label: 'Open' },
-      { label: 'Quit' }
-      ]
+      {
+        label: 'Administrar mis equipos',
+        icon: 'pi pi-fw pi-briefcase'
+      }
+      ],
+      command: () => { this.router.navigateByUrl('dashboard/team') }
     },
     {
-      label: 'Edit',
-      icon: 'pi pi-fw pi-pencil',
-      items: [
-        { label: 'Delete', icon: 'pi pi-fw pi-trash' },
-        { label: 'Refresh', icon: 'pi pi-fw pi-refresh' }
-      ]
+      label: 'Jugadores',
+      icon: 'pi pi-fw pi-user'
+    },
+    {
+      label: 'Canchas',
+      icon: 'pi pi-fw pi-calendar-minus'
     }
   ];
+
+  constructor(private router: Router) { }
 }
 
 

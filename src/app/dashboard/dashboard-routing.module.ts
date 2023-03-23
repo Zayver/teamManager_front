@@ -5,7 +5,8 @@ import { MainComponent } from './main/main.component';
 const routes: Routes = [
   {
     path: '', component: MainComponent, children: [
-
+      {path: "", redirectTo: "team", pathMatch: "full"},
+      {path: "team", loadChildren: () => import('./team/team.module').then(m => m.TeamModule)}
     ]
   }
 ];
