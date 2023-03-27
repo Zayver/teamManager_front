@@ -7,6 +7,8 @@ const routes: Routes = [
     path: '', component: MainComponent, children: [
       {path: "", redirectTo: "team", pathMatch: "full"},
       {path: "team", loadChildren: () => import('./team/team.module').then(m => m.TeamModule)},
+      {path: "player", loadChildren: () => import('./player/player.module').then(m => m.PlayerModule)},
+      {path: "field", loadChildren: () => import('./field/field.module').then(m => m.FieldModule)}
     ]
   }
 ];

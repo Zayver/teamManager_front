@@ -13,11 +13,15 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { TeamAdminComponent } from './team-admin/team-admin.component';
+import { PlayerViewComponent } from './team-admin/player-view/player-view.component';
 
 @NgModule({
   declarations: [
     TeamVisualizerComponent,
-    TeamCreatorComponent
+    TeamCreatorComponent,
+    TeamAdminComponent,
+    PlayerViewComponent
   ],
   imports: [
     CommonModule,

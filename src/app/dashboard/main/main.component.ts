@@ -27,11 +27,13 @@ export class MainComponent {
     },
     {
       label: 'Jugadores',
-      icon: 'pi pi-fw pi-user'
+      icon: 'pi pi-fw pi-user',
+      command: () => { this.router.navigateByUrl('dashboard/player') }
     },
     {
       label: 'Canchas',
-      icon: 'pi pi-fw pi-calendar-minus'
+      icon: 'pi pi-fw pi-calendar-minus',
+      command: () => { this.router.navigateByUrl('dashboard/field') }
     }
   ];
 
