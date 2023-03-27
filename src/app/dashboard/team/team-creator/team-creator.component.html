@@ -1,0 +1,34 @@
+<p-toast></p-toast>
+<div class="container">
+    <p-card header="Crear un equipo"
+        subheader="Completa el siguiente formulario para poder crear un equipo al que serás añadido automáticamente"
+        [style]="{padding: '20px'}">
+
+        <ng-template pTemplate="content">
+            <form name="teamForm" #teamForm="ngForm" (ngSubmit)="onSubmit()">
+
+
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">
+                        <i class="pi pi-user"></i>
+                    </span>
+                    <input [style]="{width: '100%'}" pInputText placeholder="Nombre del equipo" required name="name"
+                        [(ngModel)]="team.name" #name="ngModel" [maxlength]="255"/>
+                </div>
+                <p-message [style]="{width: '100%'}" [hidden]="name.valid || name.pristine" severity="error" text="Debes colocar un nombre"></p-message>
+
+
+                <textarea rows="5" cols="30" pInputTextarea [autoResize]="true" [(ngModel)]="team.description"
+                    name="description" #description="ngModel" [maxlength]="255" placeholder="Descripción"
+                    required></textarea>
+
+
+                <p-message [hidden]="description.valid || description.pristine" [style]="{width: '100%'}" severity="error" text="Debes colocar una descripción"></p-message>
+
+
+                <p-button type="submit" [disabled]="!teamForm.form.valid" label="Enviar" icon="pi pi-check" iconPos="right"></p-button>
+            </form>
+        </ng-template>
+
+    </p-card>
+</div>

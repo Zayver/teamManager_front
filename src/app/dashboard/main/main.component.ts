@@ -19,7 +19,8 @@ export class MainComponent {
       },
       {
         label: 'Administrar mis equipos',
-        icon: 'pi pi-fw pi-briefcase'
+        icon: 'pi pi-fw pi-briefcase',
+        command: () => { this.router.navigateByUrl('dashboard/team/admin') }
       }
       ],
       command: () => { this.router.navigateByUrl('dashboard/team') }
