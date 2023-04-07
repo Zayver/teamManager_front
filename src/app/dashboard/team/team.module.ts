@@ -15,6 +15,8 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { TeamAdminComponent } from './team-admin/team-admin.component';
 import { PlayerViewComponent } from './team-admin/player-view/player-view.component';
+import { AuthService } from 'src/app/shared/service/auth.service';
+import { DividerModule } from 'primeng/divider';
 
 @NgModule({
   declarations: [
@@ -32,11 +34,13 @@ import { PlayerViewComponent } from './team-admin/player-view/player-view.compon
     FormsModule,
     InputTextareaModule,
     MessageModule,
-    ToastModule
+    ToastModule,
+    DividerModule
   ],
   providers: [
     TeamService,
-    MessageService
+    MessageService,
+    AuthService
   ]
 })
 export class TeamModule { }

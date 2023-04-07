@@ -6,24 +6,30 @@
         <div class="form-container">
             <div class="form">
 
-                <span class="p-input-icon-left">
-                    <i class="pi pi-user"></i>
-                    <input type="text" pInputText [(ngModel)]="username" placeholder="Usuario">
-                </span>
+                <form name="userLoginForm" #userLoginForm="ngForm" (ngSubmit)="onSubmit()">
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-user"></i>
+                        <input type="text" pattern="^[a-zA-Z0-9]+$" name="username" required pInputText [(ngModel)]="username" placeholder="Usuario" #user="ngModel">
+                    </span>
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-verified"></i>
+                        <input type="password" name="password" required pInputText [(ngModel)]="password" placeholder="Contraseña" #pass="ngModel">
+                    </span>
 
-                <span class="p-input-icon-left">
-                    <i class="pi pi-verified"></i>
-                    <input type="password" pInputText [(ngModel)]="password" placeholder="Contraseña">
-                </span>
+                    <p-button [disabled]="!userLoginForm.form.valid"  label="Ingresar" styleClass="p-button-raised p-button-rounded p-button-success"
+                    type="submit"></p-button>
+
+                </form>
 
 
-                <div class="buttons">
-                    <button pButton type="button" label="Registrarse" class="p-button-outlined"></button>
-                    <p-button label="Ingresar" routerLink="/dashboard"></p-button>
-                </div>
-                <p-button label="Registrarse" routerLink="/signup"></p-button>
-                <p-button label="¿Olvidaste tu contraseña?" routerLink="/login/restore_password"></p-button>
-                
+
+
+                <p-button label="Registrarse" styleClass="p-button-raised p-button-danger p-button-rounded"
+                    routerLink="/signup"></p-button>
+                <p-button label="¿Olvidaste tu contraseña?"
+                    styleClass="p-button-raised p-button-text p-button-secondary p-button-outlined"
+                    routerLink="/login/restore_password"></p-button>
+
             </div>
         </div>
     </div>

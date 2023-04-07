@@ -1,1 +1,52 @@
-<p>signup-card works!</p>
+<p-toast></p-toast>
+<div class="container">
+    <p-card header="Registro" subheader="Proceso de registro para el sistema de equipos ZNQ">
+        <p-divider></p-divider>
+        <div class="form-container">
+
+            <form name="userSignForm" #userSignForm="ngForm" (ngSubmit)="onSubmit()">
+
+
+                <div class="flex flex-column gap-2">
+                    <label htmlFor="email">Correo</label>
+                    <input pInputText id="email" required email name="email" [(ngModel)]="user.email"
+                        #email="ngModel" />
+                    <p-message [style]="{width: '100%'}" [hidden]="email.valid || email.pristine" severity="error"
+                        text="Debes colocar un correo válido"></p-message>
+
+                </div>
+
+                <div class="flex flex-column gap-2">
+                    <label htmlFor="username">Nombre de usuario</label>
+                    <input pInputText id="username" required name="username" [(ngModel)]="user.username"
+                        pattern="^[a-zA-Z0-9]+$" #username="ngModel" />
+
+                    <small id="username-help">Números y letras son permitidos. Sin espacios ni carácteres
+                        especiales</small>
+                    <p-message [style]="{width: '100%'}" [hidden]="username.valid || username.pristine" severity="error"
+                        text="Debes colocar un nombre de usuario válido válido"></p-message>
+
+                </div>
+
+                <div class="flex flex-column gap-2">
+                    <label htmlFor="password">Contraseña</label>
+
+                    <p-password name="password" id="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"
+                        [(ngModel)]="user.password" [toggleMask]="true" #password="ngModel" [style]="{width: '100%'}"
+                        [inputStyle]="{'width':'100%'}" [feedback]="false"></p-password>
+                    <small id="passsword-help">Mínimo 8 carácteres, 1 Mayúscula, 1 minúscula y un dígito</small>
+
+                    <p-message [style]="{width: '100%'}" [hidden]="password.valid || password.pristine" severity="error"
+                        text="Debes colocar una contraseña segura"></p-message>
+
+                </div>
+                <p-divider></p-divider>
+
+
+                <p-button type="submit" label="Enviar" [disabled]="!userSignForm.form.valid"
+                    styleClass="p-button-raised p-button-success"></p-button>
+            </form>
+        </div>
+
+    </p-card>
+</div>

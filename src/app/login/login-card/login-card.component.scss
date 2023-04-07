@@ -17,7 +17,7 @@
 .logo-container{
     width: 50%;
     height: 100%;
-    background: radial-gradient(ellipse at center, var(--primary-800) 0%, var(--primary-900) 100%);
+    background-color: #92DCE5;
     border-bottom-left-radius: 25px;
     border-top-left-radius: 25px;
     display: flex;
@@ -28,7 +28,7 @@
 .form-container{
     width: 50%;
     height: 100%;
-    background: linear-gradient(var(--primary-500), var(--primary-400));
+    background-color: #EEE5E9;
     border-bottom-right-radius: 25px;
     border-top-right-radius: 25px;
 }
@@ -42,10 +42,12 @@
     gap: 15px;
 }
 
-.buttons{
-    width: 100%;
+form{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
+    p-button{
+        align-self: center;
+    }
 }
 

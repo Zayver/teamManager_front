@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./restore-password.component.scss']
 })
 export class RestorePasswordComponent {
+onSubmit() {
+throw new Error('Method not implemented.');
+}
+
+  emailForRestore!: string
 
 }

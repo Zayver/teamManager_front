@@ -3,3 +3,25 @@
     height: 100%;
     padding: 80px;
 }
+
+.inner-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    img{
+        width: 200px;
+        height: auto;
+    }
+
+    .team-title{
+        font-weight: 1000;
+    }
+
+    .buttons-container{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+}

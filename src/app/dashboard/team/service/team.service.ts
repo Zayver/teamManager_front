@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Team } from '../model/team';
 import { environment } from 'src/environment/environment.prod';
 import { Observable } from 'rxjs';
@@ -28,6 +28,13 @@ export class TeamService {
   }
 
   getUserTeams(id: Number): Observable<Team[]>{
-    return this.http.get<Team[]>(environment.backendAPI+`/user/teams/${environment.testId}`)
+    return this.http.get<Team[]>(environment.backendAPI+`/user/teams/${id}`)
+  }
+
+  addUserToTeam(id: number, idTeam: number): Observable<any>{
+    return this.http.put(environment.backendAPI+"/user/add_team", {
+      "id": id,
+      "teamId": idTeam
+    })
   }
 }

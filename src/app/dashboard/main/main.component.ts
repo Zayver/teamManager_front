@@ -38,6 +38,11 @@ export class MainComponent {
   ];
 
   constructor(private router: Router) { }
+
+
+  logOut(){
+    this.router.navigate(["/login"])
+  }
 }
 
 

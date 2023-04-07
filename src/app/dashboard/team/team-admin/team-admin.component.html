@@ -1,3 +1,30 @@
+<p-toast></p-toast>
 <div class="container">
-    
+    <p-card header="Lista de equipos a los que perteneces {{this.auth.currentUserValue.username}}" subheader="Número de equipos: {{this.team.length}}">
+        <p-divider></p-divider>
+
+        <p *ngIf="this.team.length==0">
+            No Perteneces a ningún equipo, ¡Explora o crea uno!
+        </p>
+
+        <div class="team-container" *ngFor="let teamI of this.team; let i = index">
+            <div class="inner-container">
+                <img src="https://primefaces.org/cdn/primeng/images/usercard.png" alt="">
+
+                <div class="info-container">
+                    <p class="team-title">{{teamI.name}}#{{teamI.id}}</p>
+                    <p>{{teamI.description}}</p>
+                </div>
+
+                <div class="buttons-container">
+                    <p-button icon="pi pi-user-edit" styleClass="p-button-rounded p-button-warning  "></p-button>
+                    <p-button icon="pi pi-times" styleClass="p-button-rounded p-button-danger"></p-button>
+
+                </div>
+            </div>
+            <p-divider></p-divider>
+        </div>
+
+
+    </p-card>
 </div>

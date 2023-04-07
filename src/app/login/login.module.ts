@@ -7,6 +7,9 @@ import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { RestorePasswordComponent } from './restore-password/restore-password.component';
+import { CardModule } from 'primeng/card';
+import { DividerModule } from 'primeng/divider';
+import { MessageModule } from 'primeng/message';
 
 
 @NgModule({
@@ -19,7 +22,10 @@ import { RestorePasswordComponent } from './restore-password/restore-password.co
     LoginRoutingModule,
     InputTextModule,
     FormsModule,
-    ButtonModule
+    ButtonModule,
+    CardModule,
+    DividerModule,
+    MessageModule
   ]
 })
 export class LoginModule { }
