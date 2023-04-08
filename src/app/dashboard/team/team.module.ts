@@ -17,6 +17,9 @@ import { TeamAdminComponent } from './team-admin/team-admin.component';
 import { PlayerViewComponent } from './team-admin/player-view/player-view.component';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { DividerModule } from 'primeng/divider';
+import { DialogModule } from 'primeng/dialog';
+import { RequestService } from 'src/app/shared/service/request.service';
+import { AvatarModule } from 'primeng/avatar';
 
 @NgModule({
   declarations: [
@@ -35,12 +38,15 @@ import { DividerModule } from 'primeng/divider';
     InputTextareaModule,
     MessageModule,
     ToastModule,
-    DividerModule
+    DividerModule,
+    DialogModule,
+    AvatarModule
   ],
   providers: [
     TeamService,
     MessageService,
-    AuthService
+    AuthService,
+    RequestService
   ]
 })
 export class TeamModule { }

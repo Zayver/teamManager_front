@@ -1,6 +1,42 @@
 <p-toast></p-toast>
+<p-dialog [blockScroll]="true" [draggable]="false" [modal]="true" header="Peticiones de: {{this.selectedTeam.name}}"
+    [(visible)]="showRequests" [style]="{ width: '80vw' }">
+    <ng-template pTemplate="header">
+        <span class="text-xl font-bold">Peticiones de: {{this.selectedTeam.name}}</span>
+    </ng-template>
+    <p-divider></p-divider>
+
+    <div class="content-container">
+        <p *ngIf="this.requests.length==0">
+            No hay peticiones en este momento
+        </p>
+        <div class="requests-container" *ngFor="let request of requests; let i = index">
+            <div class="wrapper-container">
+                
+                <div class="main-info">
+                    <h1>#{{i+1}}</h1>
+                    <p-avatar label="{{request.user.username.charAt(0).toLocaleUpperCase()}}" styleClass="mr-2"
+                        size="xlarge"></p-avatar>
+                    <div class="contact-info-container">
+                        <p>Usuario: {{request.user.username}}</p>
+                        <p>Mensaje: {{request.message}}</p>
+                    </div>
+                </div>
+
+                <div class="buttons-container">
+                    <p-button (click)="acceptRequest(request, i)" label="Aceptar"
+                        styleClass="p-button-rounded p-button-success"></p-button>
+                    <p-button (click)="declineRequest(request, i)" label="Rechazar"
+                        styleClass="p-button-rounded p-button-danger"></p-button>
+                </div>
+            </div>
+            <p-divider></p-divider>
+        </div>
+    </div>
+</p-dialog>
 <div class="container">
-    <p-card header="Lista de equipos a los que perteneces {{this.auth.currentUserValue.username}}" subheader="Número de equipos: {{this.team.length}}">
+    <p-card header="Lista de equipos a los que perteneces {{this.auth.currentUserValue.username}}"
+        subheader="Número de equipos: {{this.team.length}}">
         <p-divider></p-divider>
 
         <p *ngIf="this.team.length==0">
@@ -17,6 +53,8 @@
                 </div>
 
                 <div class="buttons-container">
+                    <p-button (click)="showRequestsOverlay(teamI)" label="Ver peticiones"
+                        styleClass="p-button-rounded p-button-help"></p-button>
                     <p-button icon="pi pi-user-edit" styleClass="p-button-rounded p-button-warning  "></p-button>
                     <p-button icon="pi pi-times" styleClass="p-button-rounded p-button-danger"></p-button>
 

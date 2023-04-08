@@ -1,4 +1,21 @@
 <p-toast></p-toast>
+
+<p-dialog [blockScroll]="true" [draggable]="false" [modal]="true"
+    header="Deseas inscribirte a: {{this.selectedTeam.name}}" [(visible)]="showRequest"
+    [style]="{ width: '80vw' }">
+    <ng-template pTemplate="header">
+        <span class="text-xl font-bold">Deseas inscribirte a: {{this.selectedTeam.name}}</span>
+    </ng-template>
+    <p-divider></p-divider>
+
+    <div class="content-container">
+        <p>Escribe un mensaje para que te acepten:</p>
+        <textarea rows="5" cols="30" pInputTextarea [autoResize]="true" [(ngModel)]="request.message"
+                    name="description" [maxlength]="255" placeholder="Mensaje"
+                    required></textarea>
+        <p-button (click)="sendRequest()" [disabled]="request.message.length==0" label="Enviar" icon="pi pi-check" iconPos="right"></p-button>
+    </div>
+</p-dialog>
 <div class="container">
 
     <div *ngIf="this.teams.length == 0">
@@ -13,7 +30,7 @@
             {{team.description}}
         </p>
         <ng-template pTemplate="footer">
-            <p-button label="Solicitar unirme" (click)="joinTeam(team.id)" icon="pi pi-check"></p-button>
+            <p-button label="Solicitar unirme" (click)="showRequestOverlay(team)" icon="pi pi-check"></p-button>
         </ng-template>
     </p-card>
 

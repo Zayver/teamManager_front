@@ -1,13 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
+import { InvitationsDetailed } from '../../shared/model/invitationsdetailed';
+import { InvitationService } from 'src/app/shared/service/invitation.service';
+import { AuthService } from 'src/app/shared/service/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'teamManager-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent {
+export class MainComponent implements OnInit {
+
   items: MenuItem[] = [
     {
       label: 'Equipos',
@@ -37,11 +42,69 @@ export class MainComponent {
     }
   ];
 
-  constructor(private router: Router) { }
+  invitations: InvitationsDetailed[] = []
+
+  showInvitations = false
+
+  constructor(private router: Router, private invitationService: InvitationService, protected authService: AuthService, private messageService: MessageService) { }
+
+  ngOnInit(): void {
+    this.invitationService.getInvitationsByUserId(this.authService.currentUserValue.id).subscribe(
+      {
+        next: (v) => this.invitations = v,
+        error: (err: HttpErrorResponse) => this.messageService.add({
+          severity: 'error',
+          summary: 'Error con el servidor: ' + err.status,
+          detail: 'Info: ' + err.message
+        }),
+        complete: () => console.info('complete')
+      }
+    );
+  }
 
 
-  logOut(){
+  logOut() {
     this.router.navigate(["/login"])
+  }
+
+  acceptInvitation(invitation: InvitationsDetailed, pos: number) {
+    this.invitationService.acceptInvitation(invitation).subscribe({
+      next: (v) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'La invitación ha sido aceptada y has sido añadido al equipo'
+        })
+        this.invitations.splice(pos, 1)
+
+      },
+      error: (err: HttpErrorResponse) => this.messageService.add({
+        severity: 'error',
+        summary: 'Error con el servidor: ' + err.status,
+        detail: 'Info: ' + err.message
+      }),
+      complete: () => console.info('complete')
+    })
+  }
+  declineInvitation(invitation: InvitationsDetailed, pos: number) {
+    this.invitationService.declineInvitation(invitation).subscribe({
+      next: (v) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Se ha eliminado la invitación correctamente'
+        })
+        this.invitations.splice(pos, 1)
+
+      },
+      error: (err: HttpErrorResponse) => this.messageService.add({
+        severity: 'error',
+        summary: 'Error con el servidor: ' + err.status,
+        detail: 'Info: ' + err.message
+      }),
+      complete: () => console.info('complete')
+    })
+  }
+  showInvitationOverlay() {
+    this.showInvitations = true
   }
 }
 

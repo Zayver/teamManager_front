@@ -1,5 +1,47 @@
-<div class="container">
-    <p-card>
+<p-toast></p-toast>
 
+<p-dialog [blockScroll]="true" [draggable]="false" 
+    header="Invitando a {{this.inviteUser.username}}#{{this.inviteUser.id}}" [(visible)]="invitationOverlay"
+    [style]="{ width: '50vw' }" [modal]="true">
+    <ng-template pTemplate="header">
+        <span class="text-xl font-bold">Invitando a {{this.inviteUser.username}}#{{this.inviteUser.id}}</span>
+    </ng-template>
+
+    <div class="overlay-content">
+        <p>Selecciona el equipo al que quieres invitar: </p>
+        <form name="userInvitationForm" #userInvitationForm="ngForm"
+            (ngSubmit)="sendInvitation()">
+            <p-dropdown name="team" #name="ngModel" appendTo="body" [options]="userTeams" [(ngModel)]="selectedTeam"
+                placeholder="Selecciona un equipo" optionLabel="name"> </p-dropdown>
+            <textarea appendTo="body" name="description" required rows="5" cols="30" pInputTextarea [autoResize]="true"
+                placeholder="Escribele un mensaje" [maxLength]="255" #description="ngModel" [(ngModel)] = "invitation.message"></textarea>
+            <p-button [disabled]="( this.selectedTeam==null || !userInvitationForm.form.valid)" label="Invitar" type="submit" styleClass="p-button-rounded"></p-button>
+
+        </form>
+    </div>
+
+
+</p-dialog>
+
+<div class="container">
+    <p-card header="Usuarios inscritos en el sistema" subheader="Cantidad: {{this.users.length}}">
+        <p-divider></p-divider>
+
+        <div class="wrapper-player" *ngFor="let user of users; let i = index">
+            <div class="player-container">
+                <div class="contact-info">
+                    <h1>#{{i+1}}</h1>
+                    <p-avatar label="{{user.username.charAt(0).toLocaleUpperCase()}}" styleClass="mr-2"
+                        size="xlarge"></p-avatar>
+                    <div class="contact-info-container">
+                        <p>{{user.username}}</p>
+                        <p>{{user.email}}</p>
+                    </div>
+                </div>
+                <p-button label="Invitar" (click)="showInvitationOverlay(user)"
+                    styleClass="p-button-rounded"></p-button>
+            </div>
+            <p-divider></p-divider>
+        </div>
     </p-card>
 </div>

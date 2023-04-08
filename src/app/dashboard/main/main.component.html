@@ -2,6 +2,41 @@
     <p-toolbar [style]="{'background':'#0B4940'}">
     </p-toolbar>
  -->
+<p-toast></p-toast>
+
+<p-dialog [blockScroll]="true" [draggable]="false" [modal]="true"
+    header="Tus invitaciones {{this.authService.currentUserValue.username}}" [(visible)]="showInvitations"
+    [style]="{ width: '80vw' }">
+    <ng-template pTemplate="header">
+        <span class="text-xl font-bold">Tus invitaciones {{this.authService.currentUserValue.username}}</span>
+    </ng-template>
+    <p-divider></p-divider>
+
+    <div class="content-container">
+        <p *ngIf="this.invitations.length==0">
+            No tienes invitationes
+        </p>
+        <div class="invitations-container" *ngFor="let invitation of invitations; let i = index">
+
+            <div class="main-content">
+                <h1>#{{i+1}}</h1>
+                <div class="info-container">
+                    <h5>Usuario que envía: {{invitation.userOwner.username}}</h5>
+                    <h5>Equipo al que entrarás: {{invitation.teamId.name}}</h5>
+                    <h5>Mensaje: {{invitation.message}}</h5>
+                </div>
+            </div>
+            <div class="button-container">
+                <p-button label="Aceptar" (click)="acceptInvitation(invitation, i)"
+                    styleClass="p-button-rounded"></p-button>
+                <p-button label="Rechazar" (click)="declineInvitation(invitation, i)"
+                    styleClass="p-button-rounded p-button-danger"></p-button>
+            </div>
+
+        </div>
+    </div>
+</p-dialog>
+
 <p-menubar [model]="items" [autoDisplay]="true">
     <ng-template pTemplate="start">
         <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" height="40"
@@ -10,10 +45,9 @@
 
     <ng-template pTemplate="end">
         <span class="p-buttonset">
-            <p-button label="Invitaciones" badge="5"></p-button>
-            <p-button label="Peticiones" icon="pi pi-users" styleClass="p-button-warning" badge="8"
-                badgeClass="p-badge-danger"></p-button>
-            <p-button label="Salir" (click)="logOut()"icon="pi pi-sign-out" styleClass="p-button-danger"></p-button>
+            <p-button label="Invitaciones" badge="{{this.invitations.length}}"
+                (click)="showInvitationOverlay()"></p-button>
+            <p-button label="Salir" (click)="logOut()" icon="pi pi-sign-out" styleClass="p-button-danger"></p-button>
         </span>
     </ng-template>
 </p-menubar>

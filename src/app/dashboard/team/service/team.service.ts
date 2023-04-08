@@ -11,8 +11,8 @@ export class TeamService {
 
   constructor(private http: HttpClient) {}
 
-  getTeams(): Observable<Team[]>{
-    return this.http.get<Team[]>(environment.backendAPI+"/team/all")
+  getTeams(id: number): Observable<Team[]>{
+    return this.http.get<Team[]>(environment.backendAPI+"/team/all/"+ id)
   }
 
   addTeam(team: Team): Observable<any>{
@@ -32,9 +32,7 @@ export class TeamService {
   }
 
   addUserToTeam(id: number, idTeam: number): Observable<any>{
-    return this.http.put(environment.backendAPI+"/user/add_team", {
-      "id": id,
-      "teamId": idTeam
-    })
+    //REQUEST JOIN
+    return this.http.put(environment.backendAPI+"/request/add", {})
   }
 }

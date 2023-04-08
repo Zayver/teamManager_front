@@ -8,20 +8,41 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+
+    gap: 15px;
 
     img{
         width: 200px;
         height: auto;
     }
 
+    .info-container{
+        flex:1
+    }
+
     .team-title{
         font-weight: 1000;
     }
 
-    .buttons-container{
+    
+}
+.buttons-container{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.wrapper-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    .main-info{
+        flex: 1;
         display: flex;
         flex-direction: row;
+        align-items: center;
         gap: 10px;
     }
 }

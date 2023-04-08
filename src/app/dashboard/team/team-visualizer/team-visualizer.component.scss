@@ -7,3 +7,11 @@
     column-gap: 100px;
     row-gap: 50px;
 }
+
+.content-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
