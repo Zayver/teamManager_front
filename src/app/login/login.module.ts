@@ -10,6 +10,9 @@ import { RestorePasswordComponent } from './restore-password/restore-password.co
 import { CardModule } from 'primeng/card';
 import { DividerModule } from 'primeng/divider';
 import { MessageModule } from 'primeng/message';
+import { AuthService } from '../shared/service/auth.service';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 
 @NgModule({
@@ -25,7 +28,12 @@ import { MessageModule } from 'primeng/message';
     ButtonModule,
     CardModule,
     DividerModule,
-    MessageModule
+    MessageModule,
+    ToastModule
+  ],
+  providers: [
+    AuthService,
+    MessageService
   ]
 })
 export class LoginModule { }

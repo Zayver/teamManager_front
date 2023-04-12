@@ -20,6 +20,7 @@ import { DividerModule } from 'primeng/divider';
 import { DialogModule } from 'primeng/dialog';
 import { RequestService } from 'src/app/shared/service/request.service';
 import { AvatarModule } from 'primeng/avatar';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AvatarModule } from 'primeng/avatar';
     ToastModule,
     DividerModule,
     DialogModule,
-    AvatarModule
+    AvatarModule,
+    InputTextModule
   ],
   providers: [
     TeamService,

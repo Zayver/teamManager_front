@@ -13,6 +13,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { SignupService } from './service/signup.service';
 import { HttpClientModule } from '@angular/common/http';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     PasswordModule,
     ButtonModule,
     ToastModule,
-    HttpClientModule
+    HttpClientModule,
+    InputTextModule
   ], 
   providers:[
     SignupService,

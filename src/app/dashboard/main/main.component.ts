@@ -64,6 +64,7 @@ export class MainComponent implements OnInit {
 
 
   logOut() {
+    this.authService.logout()
     this.router.navigate(["/login"])
   }
 

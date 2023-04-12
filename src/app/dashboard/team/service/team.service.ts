@@ -15,8 +15,8 @@ export class TeamService {
     return this.http.get<Team[]>(environment.backendAPI+"/team/all/"+ id)
   }
 
-  addTeam(team: Team): Observable<any>{
-    return this.http.post(environment.backendAPI+"/team/add", team);
+  addTeam(team: Team, userId: number): Observable<any>{
+    return this.http.post(environment.backendAPI+"/team/add/"+userId, team);
   }
 
   deleteTeam(id: Number): Observable<any>{
