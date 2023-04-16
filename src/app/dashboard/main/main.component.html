@@ -43,12 +43,18 @@
             style="margin-right: 20px; margin-left: 10px;">
     </ng-template>
 
+
+    
     <ng-template pTemplate="end">
-        <span class="p-buttonset">
-            <p-button label="Invitaciones" badge="{{this.invitations.length}}"
-                (click)="showInvitationOverlay()"></p-button>
-            <p-button label="Salir" (onClick)="logOut()" icon="pi pi-sign-out" styleClass="p-button-danger"></p-button>
-        </span>
+        <div class="end-container">
+            <h2>Bienvenido: {{this.authService.currentUserValue.username}}</h2>
+            <span class="p-buttonset">
+            
+                <p-button label="Invitaciones" badge="{{this.invitations.length}}"
+                    (click)="showInvitationOverlay()"></p-button>
+                <p-button label="Salir" (onClick)="logOut()" icon="pi pi-sign-out" styleClass="p-button-danger"></p-button>
+            </span>
+        </div>
     </ng-template>
 </p-menubar>
 <router-outlet></router-outlet>

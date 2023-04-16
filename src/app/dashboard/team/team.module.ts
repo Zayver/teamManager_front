@@ -14,7 +14,6 @@ import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { TeamAdminComponent } from './team-admin/team-admin.component';
-import { PlayerViewComponent } from './team-admin/player-view/player-view.component';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { DividerModule } from 'primeng/divider';
 import { DialogModule } from 'primeng/dialog';
@@ -26,8 +25,8 @@ import { InputTextModule } from 'primeng/inputtext';
   declarations: [
     TeamVisualizerComponent,
     TeamCreatorComponent,
-    TeamAdminComponent,
-    PlayerViewComponent
+    TeamAdminComponent
+    
   ],
   imports: [
     CommonModule,

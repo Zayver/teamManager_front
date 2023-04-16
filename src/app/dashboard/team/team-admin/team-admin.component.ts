@@ -30,7 +30,7 @@ export class TeamAdminComponent implements OnInit {
       error: (err: HttpErrorResponse) => this.messageService.add({
         severity: 'error',
         summary: 'Error con el servidor: ' + err.status,
-        detail: 'Info: ' + err.message
+        detail: err.error.message
       }),
       complete: () => console.info('complete')
     })
@@ -46,7 +46,7 @@ export class TeamAdminComponent implements OnInit {
       error: (err: HttpErrorResponse) => this.messageService.add({
         severity: 'error',
         summary: 'Error con el servidor: ' + err.status,
-        detail: 'Info: ' + err.message
+        detail: err.error.message
       }),
       complete: () => console.info('complete')
     })
@@ -64,7 +64,7 @@ export class TeamAdminComponent implements OnInit {
       error: (err: HttpErrorResponse) => this.messageService.add({
         severity: 'error',
         summary: 'Error con el servidor: ' + err.status,
-        detail: 'Info: ' + err.message
+        detail: err.error.message
       }),
       complete: () => console.info('complete')
     })
@@ -83,7 +83,7 @@ export class TeamAdminComponent implements OnInit {
       error: (err: HttpErrorResponse) => this.messageService.add({
         severity: 'error',
         summary: 'Error con el servidor: ' + err.status,
-        detail: 'Info: ' + err.message
+        detail: err.error.message
       }),
       complete: () => console.info('complete')
     })

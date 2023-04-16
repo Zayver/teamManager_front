@@ -1,11 +1,11 @@
-.p-buttonset{
-    p-button{
+.p-buttonset {
+    p-button {
         margin-left: 5px;
         margin-right: 5px;
     }
 }
 
-.content-container{
+.content-container {
     display: flex;
     flex-direction: column;
     padding-left: 20px;
@@ -14,13 +14,14 @@
 
 }
 
-.invitations-container{
+.invitations-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
-.main-content{
+
+.main-content {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -28,8 +29,29 @@
     align-self: flex-start;
     gap: 20px;
 }
-.button-container{
+
+.button-container {
     display: flex;
     gap: 10px;
 }
 
+.end-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+
+    h2 {
+        color: #0000;
+        background:
+            radial-gradient(circle, var(--green-400) 30%, var(--red-400) 30%) var(--c, 0%)/200% no-repeat;
+        -webkit-background-clip: text;
+        background-clip: text;
+        transition: .5s;
+    }
+
+    h2:hover {
+        --c: 100%;
+    }
+
+}

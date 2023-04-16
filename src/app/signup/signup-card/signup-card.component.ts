@@ -26,9 +26,11 @@ export class SignupCardComponent {
         this.router.navigate(['/dashboard'])
       },
       error: (err: HttpErrorResponse) =>{
+        console.log(err)
         this.messageService.add({
           severity: 'error',
-          detail: "Error on signup: "+ err.status
+          summary: "Error on signup: "+ err.status,
+          detail: err.error.message
         })
       }
     })

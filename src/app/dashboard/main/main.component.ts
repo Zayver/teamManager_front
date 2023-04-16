@@ -55,7 +55,7 @@ export class MainComponent implements OnInit {
         error: (err: HttpErrorResponse) => this.messageService.add({
           severity: 'error',
           summary: 'Error con el servidor: ' + err.status,
-          detail: 'Info: ' + err.message
+          detail: err.error.message
         }),
         complete: () => console.info('complete')
       }
@@ -69,7 +69,7 @@ export class MainComponent implements OnInit {
       error: (err: HttpErrorResponse) => {
         this.messageService.add({
           severity: 'error',
-          detail: "Error: "+ err.status
+          detail: err.error.message
         })
       },
     })
@@ -88,12 +88,13 @@ export class MainComponent implements OnInit {
       error: (err: HttpErrorResponse) => this.messageService.add({
         severity: 'error',
         summary: 'Error con el servidor: ' + err.status,
-        detail: 'Info: ' + err.message
+        detail: err.error.message
       }),
       complete: () => console.info('complete')
     })
   }
   declineInvitation(invitation: InvitationsDetailed, pos: number) {
+    console.log(invitation)
     this.invitationService.declineInvitation(invitation).subscribe({
       next: (v) => {
         this.messageService.add({
@@ -106,7 +107,7 @@ export class MainComponent implements OnInit {
       error: (err: HttpErrorResponse) => this.messageService.add({
         severity: 'error',
         summary: 'Error con el servidor: ' + err.status,
-        detail: 'Info: ' + err.message
+        detail: err.error.message
       }),
       complete: () => console.info('complete')
     })

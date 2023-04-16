@@ -23,7 +23,7 @@ export class TeamCreatorComponent {
       error: (err: HttpErrorResponse) => this.messageService.add({
         severity: 'error',
         summary: 'Error con el servidor: ' + err.status,
-        detail: 'Ha ocurrido un error al intentar acceder a los datos del servidor backend: ' + err.message
+        detail: err.error.message
       })
 
     })

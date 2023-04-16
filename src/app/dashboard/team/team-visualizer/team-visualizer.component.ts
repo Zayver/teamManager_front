@@ -32,7 +32,7 @@ export class TeamVisualizerComponent implements OnInit {
       error: (err: HttpErrorResponse) => this.messageService.add({
         severity: 'error',
         summary: 'Error con el servidor: ' + err.status,
-        detail: 'Ha ocurrido un error al intentar acceder a los datos del servidor backend: ' + err.message
+        detail: err.error.message
       }),
       complete: () => console.info('complete')
     })
@@ -49,7 +49,7 @@ export class TeamVisualizerComponent implements OnInit {
     this.requestService.addRequest(this.request).subscribe({
       next: (v) => {
         this.messageService.add({
-          severity: 'succcess',
+          severity: 'success',
           summary: 'Se ha enviado correctamente',
         })
         this.showRequest = false
@@ -57,7 +57,7 @@ export class TeamVisualizerComponent implements OnInit {
       error: (err: HttpErrorResponse) => this.messageService.add({
         severity: 'error',
         summary: 'Error con el servidor: ' + err.status,
-        detail: 'Ha ocurrido un error: ' + err.message
+        detail: err.error.message
       }),
       complete: () => console.info('complete')
     })

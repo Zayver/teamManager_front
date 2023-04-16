@@ -42,7 +42,7 @@ export class LoginCardComponent {
           this.messageService.add({
             severity: 'error',
             summary: 'Error con el servidor: ' + err.status,
-            detail: 'Info: ' + err.message
+            detail: 'Info: ' + err.error.message
           })
         }
       }
