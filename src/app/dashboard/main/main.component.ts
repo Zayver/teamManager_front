@@ -64,8 +64,15 @@ export class MainComponent implements OnInit {
 
 
   logOut() {
-    this.authService.logout()
-    this.router.navigate(["/login"])
+    this.authService.logout().subscribe({
+      next: (v) => this.router.navigate(['/login']),
+      error: (err: HttpErrorResponse) => {
+        this.messageService.add({
+          severity: 'error',
+          detail: "Error: "+ err.status
+        })
+      },
+    })
   }
 
   acceptInvitation(invitation: InvitationsDetailed, pos: number) {

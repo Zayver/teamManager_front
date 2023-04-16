@@ -1,0 +1,30 @@
+<p-toast></p-toast>
+<div class="container">
+    <p-card header="Sistema de reserva de canchas">
+        <p-divider></p-divider>
+
+        <div class="form-container">
+            <form name="userLoginForm" #fieldReservationForm="ngForm" (ngSubmit)="sendReservation()">
+                <div class="form-wrapper">
+                    <div class="item">
+                        <label htmlFor="date">Fecha y hora</label>
+                        <p-calendar [style]="{width: '100%'}" id="date" [(ngModel)]="reservation.date" [required]="true" [showTime]="true" name="date"
+                            [minDate]="today"></p-calendar>
+                    </div>
+
+                    <div class="item">
+                        <label htmlFor="message">Comentario</label>
+                        <textarea [style]="{width: '80%'}" #comment="ngModel" id="message" [(ngModel)]="reservation.comment" rows="5" cols="30" required pInputTextarea [autoResize]="true" name="message"></textarea>
+                        <p-message [style]="{width: '80%'}" [hidden]="comment.valid || comment.pristine"
+                            severity="error" text="Debes colocar un mensaje"></p-message>
+                    </div>
+
+                </div>
+                <p-button type="submit" label="Enviar" styleClass="p-button-success"
+                    [disabled]="!fieldReservationForm.form.valid"></p-button>
+            </form>
+        </div>
+
+
+    </p-card>
+</div>

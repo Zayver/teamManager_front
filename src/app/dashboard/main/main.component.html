@@ -27,9 +27,9 @@
                 </div>
             </div>
             <div class="button-container">
-                <p-button label="Aceptar" (click)="acceptInvitation(invitation, i)"
+                <p-button label="Aceptar" (onClick)="acceptInvitation(invitation, i)"
                     styleClass="p-button-rounded"></p-button>
-                <p-button label="Rechazar" (click)="declineInvitation(invitation, i)"
+                <p-button label="Rechazar" (onClick)="declineInvitation(invitation, i)"
                     styleClass="p-button-rounded p-button-danger"></p-button>
             </div>
 
@@ -39,7 +39,7 @@
 
 <p-menubar [model]="items" [autoDisplay]="true">
     <ng-template pTemplate="start">
-        <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" height="40"
+        <img src="/assets/icon.png" height="40"
             style="margin-right: 20px; margin-left: 10px;">
     </ng-template>
 
@@ -47,7 +47,7 @@
         <span class="p-buttonset">
             <p-button label="Invitaciones" badge="{{this.invitations.length}}"
                 (click)="showInvitationOverlay()"></p-button>
-            <p-button label="Salir" (click)="logOut()" icon="pi pi-sign-out" styleClass="p-button-danger"></p-button>
+            <p-button label="Salir" (onClick)="logOut()" icon="pi pi-sign-out" styleClass="p-button-danger"></p-button>
         </span>
     </ng-template>
 </p-menubar>

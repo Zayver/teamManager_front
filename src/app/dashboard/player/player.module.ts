@@ -39,8 +39,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
   ],
   providers:[
     PlayerService,
-    MessageService,
-    AuthService
+    MessageService
   ]
 })
 export class PlayerModule { }

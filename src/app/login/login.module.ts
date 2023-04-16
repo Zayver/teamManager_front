@@ -32,7 +32,6 @@ import { MessageService } from 'primeng/api';
     ToastModule
   ],
   providers: [
-    AuthService,
     MessageService
   ]
 })

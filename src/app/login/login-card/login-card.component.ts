@@ -14,7 +14,11 @@ export class LoginCardComponent {
   username = ""
   password = ""
   
-  constructor(private router: Router, private auth: AuthService, private messageService: MessageService) { }
+  constructor(private router: Router, private auth: AuthService, private messageService: MessageService) {
+    if(this.auth.isLoggedIn){
+      this.router.navigate(['/dashboard'])
+    }
+  }
   navigateSignUp() {
     this.router.navigate(['', 'signup'])
   }

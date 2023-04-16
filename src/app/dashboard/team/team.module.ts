@@ -47,7 +47,6 @@ import { InputTextModule } from 'primeng/inputtext';
   providers: [
     TeamService,
     MessageService,
-    AuthService,
     RequestService
   ]
 })

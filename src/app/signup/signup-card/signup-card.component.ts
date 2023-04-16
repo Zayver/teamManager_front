@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { UserSign } from '../model/userSign';
-import { SignupService } from '../service/signup.service';
 import { MessageService } from 'primeng/api';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/shared/service/auth.service';
+import { AuthenticationRequest } from 'src/app/shared/model/auth/authentication.request';
+import { RegisterRequest } from 'src/app/shared/model/auth/register.request';
 
 @Component({
   selector: 'teamManager-signup-card',
@@ -13,22 +15,23 @@ import { Router } from '@angular/router';
 export class SignupCardComponent {
 
 
-  user: UserSign = new UserSign
+  user:RegisterRequest  = new RegisterRequest
 
-  constructor(private userSignService: SignupService, private messageService: MessageService, private router: Router) { }
+  constructor(private auth: AuthService, private messageService: MessageService, private router: Router) { }
 
 
   onSubmit() {
-    this.userSignService.addUser(this.user).subscribe(
-      {
-        next: (ok: HttpResponse<any>) => this.router.navigate(['dashboard/']),
-        error: (err: HttpErrorResponse) => this.messageService.add({
+    this.auth.signup(this.user).subscribe({
+      next: () => {
+        this.router.navigate(['/dashboard'])
+      },
+      error: (err: HttpErrorResponse) =>{
+        this.messageService.add({
           severity: 'error',
-          summary: 'Error con el servidor: ' + err.status,
-          detail: 'Info: ' + err.message
-        }
-        )
-      })
+          detail: "Error on signup: "+ err.status
+        })
+      }
+    })
   }
 
 }

@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, map } from 'rxjs';
 import { User } from '../model/user';
 import { environment } from 'src/environment/environment.prod';
 import { AuthenticationResponse } from '../model/auth/authentication.response';
+import { RegisterRequest } from '../model/auth/register.request';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,12 @@ export class AuthService {
 
 
   constructor(private http: HttpClient) {
-    this.authenticationResponseSubject = new BehaviorSubject<AuthenticationResponse>
-      (JSON.parse(localStorage.getItem('currentUser') || '{}'))
+    let user = localStorage.getItem('currentUser')
+    if(user === null){
+      this.authenticationResponseSubject = new BehaviorSubject<AuthenticationResponse>(new AuthenticationResponse)
+    }else{
+      this.authenticationResponseSubject = new BehaviorSubject<AuthenticationResponse>(JSON.parse(user))
+    }
   }
 
   public get currentUserValue(): User {
@@ -26,8 +31,8 @@ export class AuthService {
   }
 
   public get isLoggedIn(): boolean {
-    let authToken = localStorage.getItem('currentUser');
-    return authToken !== null ? true : false;
+    //let authToken = localStorage.getItem('currentUser');
+    return this.currentUserValue.id !== 0
   }
 
   public get token(): string {
@@ -47,17 +52,17 @@ export class AuthService {
       }));
   }
 
-  signup(user: User) {
-    return this.http.post<any>(`${environment.backendAPI}/auth/authenticate`, user).pipe(map(user => {
+  signup(user: RegisterRequest) {
+    return this.http.post<any>(`${environment.backendAPI}/auth/register`, user).pipe(map(u => {
       // store user details and jwt token in local storage to keep user logged in between page refreshes
       localStorage.setItem('currentUser', JSON.stringify(user));
-      this.authenticationResponseSubject.next(user);
-      return user;
+      this.authenticationResponseSubject.next(u);
+      return u;
     }));
   }
 
   logout() {
-    this.http.post(`${environment.backendAPI}/auth/logout`, {}).pipe(
+    return this.http.post(`${environment.backendAPI}/auth/logout`, {}).pipe(
       map(v => {
         localStorage.removeItem('currentUser')
         this.authenticationResponseSubject.next(new AuthenticationResponse);

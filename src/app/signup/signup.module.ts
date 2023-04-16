@@ -11,7 +11,6 @@ import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import { SignupService } from './service/signup.service';
 import { HttpClientModule } from '@angular/common/http';
 import { InputTextModule } from 'primeng/inputtext';
 
@@ -33,7 +32,6 @@ import { InputTextModule } from 'primeng/inputtext';
     InputTextModule
   ], 
   providers:[
-    SignupService,
     MessageService
   ]
 })
