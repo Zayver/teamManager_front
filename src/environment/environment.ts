@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    backendAPI: "http://localhost:8080",
+    backendAPI: "teammanager-backend-production.up.railway.app",
     fieldAPI: "http://dummyAPI.com"
 
 }
