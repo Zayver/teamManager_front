@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { User } from '../model/user';
-import { environment } from 'src/environment/environment.prod';
 import { AuthenticationResponse } from '../model/auth/authentication.response';
 import { RegisterRequest } from '../model/auth/register.request';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
