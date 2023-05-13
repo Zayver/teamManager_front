@@ -5,6 +5,7 @@ import { InvitationsDetailed } from '../../shared/model/invitationsdetailed';
 import { InvitationService } from 'src/app/shared/service/invitation.service';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'teamManager-main',
@@ -13,7 +14,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class MainComponent implements OnInit {
 
-  items: MenuItem[] = [
+  readonly items: MenuItem[] = [
     {
       label: 'Equipos',
       icon: 'pi pi-fw pi-id-card',
@@ -45,8 +46,19 @@ export class MainComponent implements OnInit {
   invitations: InvitationsDetailed[] = []
 
   showInvitations = false
+  showLoginFailure = false
+  constructor(private router: Router, private invitationService: InvitationService, protected authService: AuthService, private messageService: MessageService) { 
+    authService.isLogged.subscribe(
+      {
+        next: (val) => {
+          if(val.id === 0){
+            this.showLoginFailure = true
+          }
+        },
+      }
+    )
+  }
 
-  constructor(private router: Router, private invitationService: InvitationService, protected authService: AuthService, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.invitationService.getInvitationsByUserId(this.authService.currentUserValue.id).subscribe(

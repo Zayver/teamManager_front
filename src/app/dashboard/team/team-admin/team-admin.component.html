@@ -1,4 +1,36 @@
 <p-toast></p-toast>
+
+<p-dialog [blockScroll]="true" [draggable]="false" [modal]="true" header="Jugadores de: {{this.selectedTeam.name}}"
+    [(visible)]="showTeamPlayers" [style]="{ width: '50vw' }">
+
+    <ng-template pTemplate="header">
+        <span class="text-xl font-bold">Jugadores de: {{this.selectedTeam.name}}</span>
+    </ng-template>
+    <p-divider></p-divider>
+
+    <div class="content-container">
+        <div class="players-container" *ngFor="let user of teamUsers; let i = index">
+            <div class="wrapper-container">
+                
+                <div class="main-info">
+                    <h1>#{{i+1}}</h1>
+                    <p-avatar label="{{user.username.charAt(0).toLocaleUpperCase()}}" styleClass="mr-2"
+                        size="xlarge"></p-avatar>
+                    <div class="contact-info-container">
+                        <p>Usuario: {{user.username}}</p>
+                        <p>Mensaje: {{user.email}}</p>
+                    </div>
+                </div>
+            </div>
+            <p-divider></p-divider>
+
+
+        </div>
+    </div>
+
+
+</p-dialog>
+
 <p-dialog [blockScroll]="true" [draggable]="false" [modal]="true" header="Peticiones de: {{this.selectedTeam.name}}"
     [(visible)]="showRequests" [style]="{ width: '80vw' }">
     <ng-template pTemplate="header">
@@ -55,7 +87,7 @@
                 <div class="buttons-container">
                     <p-button (click)="showRequestsOverlay(teamI)" label="Ver peticiones"
                         styleClass="p-button-rounded p-button-help"></p-button>
-                    <p-button icon="pi pi-user-edit" styleClass="p-button-rounded p-button-warning  "></p-button>
+                    <p-button icon="pi pi-user-edit" (onClick)="getTeamUsers(teamI)" styleClass="p-button-rounded p-button-warning  "></p-button>
                     <p-button icon="pi pi-times" styleClass="p-button-rounded p-button-danger"></p-button>
 
                 </div>

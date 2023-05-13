@@ -5,6 +5,20 @@
 <p-toast></p-toast>
 
 <p-dialog [blockScroll]="true" [draggable]="false" [modal]="true"
+    header="Error en el login" [(visible)]="showLoginFailure" [closable]="false"
+    [style]="{ width: '80vw' }">
+
+    <div class="content-container">
+        <h1>Ha ocurrido un error al loguearte tienes que volver a intentarlo</h1>
+        <div class="button-container">
+            <p-button label="Aceptar" (onClick)="logOut()"
+                styleClass="p-button-rounded"></p-button>
+        </div>
+    </div>
+
+</p-dialog>
+
+<p-dialog [blockScroll]="true" [draggable]="false" [modal]="true"
     header="Tus invitaciones {{this.authService.currentUserValue.username}}" [(visible)]="showInvitations"
     [style]="{ width: '80vw' }">
     <ng-template pTemplate="header">
@@ -39,20 +53,20 @@
 
 <p-menubar [model]="items" [autoDisplay]="true">
     <ng-template pTemplate="start">
-        <img src="/assets/icon.png" height="40"
-            style="margin-right: 20px; margin-left: 10px;">
+        <img src="/assets/icon.png" height="40" style="margin-right: 20px; margin-left: 10px;">
     </ng-template>
 
 
-    
+
     <ng-template pTemplate="end">
         <div class="end-container">
             <h2>Bienvenido: {{this.authService.currentUserValue.username}}</h2>
             <span class="p-buttonset">
-            
+
                 <p-button label="Invitaciones" badge="{{this.invitations.length}}"
                     (click)="showInvitationOverlay()"></p-button>
-                <p-button label="Salir" (onClick)="logOut()" icon="pi pi-sign-out" styleClass="p-button-danger"></p-button>
+                <p-button label="Salir" (onClick)="logOut()" icon="pi pi-sign-out"
+                    styleClass="p-button-danger"></p-button>
             </span>
         </div>
     </ng-template>

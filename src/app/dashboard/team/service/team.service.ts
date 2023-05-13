@@ -35,4 +35,8 @@ export class TeamService {
     //REQUEST JOIN
     return this.http.put(environment.backendAPI+"/request/add", {})
   }
+
+  getUsersByTeam(id: number): Observable<any>{
+    return this.http.get(environment.backendAPI+"/team/users/"+id)
+  }
 }

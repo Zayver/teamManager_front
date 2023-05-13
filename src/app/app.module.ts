@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './shared/interceptor/auth.interceptor';
 import { AuthService } from './shared/service/auth.service';
+import { AuthResponseInterceptor } from './shared/interceptor/auth-response.interceptor';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,11 @@ import { AuthService } from './shared/service/auth.service';
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
+    multi: true
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthResponseInterceptor,
     multi: true
   },
     AuthService

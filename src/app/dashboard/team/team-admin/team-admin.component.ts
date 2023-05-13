@@ -6,6 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { RequestDetailed } from 'src/app/shared/model/requestdetailed';
 import { RequestService } from 'src/app/shared/service/request.service';
+import { User } from 'src/app/shared/model/user';
 
 @Component({
   selector: 'teamManager-team-admin',
@@ -14,7 +15,9 @@ import { RequestService } from 'src/app/shared/service/request.service';
 })
 export class TeamAdminComponent implements OnInit {
   team: Team[] = []
+  teamUsers: User[] = []
   showRequests = false
+  showTeamPlayers = false
   selectedTeam: Team = new Team
   requests: RequestDetailed[] = []
 
@@ -87,7 +90,21 @@ export class TeamAdminComponent implements OnInit {
       }),
       complete: () => console.info('complete')
     })
+  }
 
+  getTeamUsers(team: Team){
+    this.selectedTeam = team
+    this.teamService.getUsersByTeam(team.id).subscribe({
+      next: (users: User[]) =>{
+        this.showTeamPlayers = true
+        this.teamUsers = users
+      },
+      error: (err: HttpErrorResponse) => this.messageService.add({
+        severity: 'error',
+        summary: 'Error con el servidor: ' + err.status,
+        detail: err.error.message
+      })
+    })
   }
 
 }

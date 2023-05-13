@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map, of } from 'rxjs';
 import { User } from '../model/user';
 import { AuthenticationResponse } from '../model/auth/authentication.response';
 import { RegisterRequest } from '../model/auth/register.request';
@@ -12,6 +12,9 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   private authenticationResponseSubject: BehaviorSubject<AuthenticationResponse>
 
+  public get isLogged(){
+    return this.authenticationResponseSubject
+  }
 
   constructor(private http: HttpClient) {
     let user = localStorage.getItem('currentUser')
@@ -55,7 +58,7 @@ export class AuthService {
   signup(user: RegisterRequest) {
     return this.http.post<any>(`${environment.backendAPI}/auth/register`, user).pipe(map(u => {
       // store user details and jwt token in local storage to keep user logged in between page refreshes
-      localStorage.setItem('currentUser', JSON.stringify(user));
+      localStorage.setItem('currentUser', JSON.stringify(u));
       this.authenticationResponseSubject.next(u);
       return u;
     }));
@@ -64,9 +67,17 @@ export class AuthService {
   logout() {
     return this.http.post(`${environment.backendAPI}/auth/logout`, {}).pipe(
       map(v => {
-        localStorage.removeItem('currentUser')
+        this.removeToken()
         this.authenticationResponseSubject.next(new AuthenticationResponse);
       })
     )
+  }
+
+  loginError(){
+    this.authenticationResponseSubject.next(new AuthenticationResponse)
+  }
+
+  private removeToken(){
+    localStorage.removeItem("currentUser")
   }
 }
