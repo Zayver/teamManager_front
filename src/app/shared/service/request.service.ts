@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Request } from '../model/request';
 import { Observable } from 'rxjs';
@@ -17,7 +17,8 @@ export class RequestService {
   }
 
   getRequestsByTeamId(id: number): Observable<RequestDetailed[]>{
-    return this.http.get<RequestDetailed[]>(environment.backendAPI+"/request/get/"+id);
+    const params = new HttpParams().append("id", id)
+    return this.http.get<RequestDetailed[]>(environment.backendAPI+"/request/get", {params: params});
   }
   declineRequest(request:RequestDetailed): Observable<any>{
     return this.http.post(environment.backendAPI+"/request/decline", request);

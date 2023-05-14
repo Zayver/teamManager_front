@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/shared/model/user';
@@ -10,13 +10,15 @@ import { environment } from 'src/environments/environment';
 })
 export class PlayerService {
   getAllTeamsByUser(id: any) {
-    return this.http.get<Team[]>(environment.backendAPI+`/user/teams/${id}`)
+    const params = new HttpParams().append("id", id)
+    return this.http.get<Team[]>(environment.backendAPI+`/user/teams`, {params: params})
   }
 
   constructor(private http: HttpClient) { }
 
   getAllUsersExceptCaller(id: number): Observable<User[]>{
-    return this.http.get<User[]>(environment.backendAPI+"/user/all/"+id)
+    const params = new HttpParams().append("id", id)
+    return this.http.get<User[]>(environment.backendAPI+"/user/all", {params: params}) 
   }
 
   
