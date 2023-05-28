@@ -14,7 +14,6 @@ import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { TeamAdminComponent } from './team-admin/team-admin.component';
-import { AuthService } from 'src/app/shared/service/auth.service';
 import { DividerModule } from 'primeng/divider';
 import { DialogModule } from 'primeng/dialog';
 import { RequestService } from 'src/app/shared/service/request.service';

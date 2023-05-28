@@ -42,6 +42,7 @@ export class AuthService {
     return this.authenticationResponseSubject.value.token
   }
 
+  t(){}
   login(username: string, password: string) {
     return this.http.post<any>(`${environment.backendAPI}/auth/authenticate`, {
       "username": username,
